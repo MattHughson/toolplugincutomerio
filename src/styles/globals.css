@@ -1,0 +1,145 @@
+:root {
+	--sb-blue: #09b3af;
+	--sb-ink: #1a2634;
+	--sb-border: #e3e8ee;
+	--sb-bg: #ffffff;
+	--sb-muted: #6a7889;
+	--sb-success: #1a9c6b;
+	--sb-error: #d92d20;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background: var(--sb-bg);
+	color: var(--sb-ink);
+	font-family:
+		-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+		sans-serif;
+	font-size: 14px;
+}
+
+.app {
+	padding: 16px;
+}
+
+.app__status {
+	color: var(--sb-muted);
+	font-size: 13px;
+}
+
+.app__status--error {
+	color: var(--sb-error);
+}
+
+.app__header h1 {
+	font-size: 18px;
+	margin: 0 0 4px;
+}
+
+.app__header p {
+	margin: 0 0 16px;
+	color: var(--sb-muted);
+}
+
+.placeholder-picker__search {
+	margin-bottom: 16px;
+}
+
+.placeholder-picker__search input {
+	width: 100%;
+	padding: 8px 10px;
+	border: 1px solid var(--sb-border);
+	border-radius: 6px;
+	font-size: 14px;
+}
+
+.placeholder-picker__search input:focus {
+	outline: 2px solid var(--sb-blue);
+	outline-offset: -1px;
+}
+
+.placeholder-picker__empty {
+	color: var(--sb-muted);
+}
+
+.placeholder-picker__group {
+	margin-bottom: 20px;
+}
+
+.placeholder-picker__category {
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--sb-muted);
+	margin: 0 0 8px;
+}
+
+.placeholder-picker__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border: 1px solid var(--sb-border);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.placeholder-picker__item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 10px 12px;
+	border-bottom: 1px solid var(--sb-border);
+	background: var(--sb-bg);
+}
+
+.placeholder-picker__item:last-child {
+	border-bottom: none;
+}
+
+.placeholder-picker__item-info {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 0;
+}
+
+.placeholder-picker__label {
+	font-weight: 500;
+}
+
+.placeholder-picker__tag {
+	color: var(--sb-muted);
+	font-size: 12px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.placeholder-picker__copy {
+	flex-shrink: 0;
+	padding: 6px 12px;
+	border: 1px solid var(--sb-blue);
+	background: var(--sb-bg);
+	color: var(--sb-blue);
+	border-radius: 6px;
+	font-size: 13px;
+	font-weight: 500;
+	cursor: pointer;
+	min-width: 88px;
+}
+
+.placeholder-picker__copy:hover {
+	background: var(--sb-blue);
+	color: #fff;
+}
+
+.placeholder-picker__copy:active {
+	transform: translateY(1px);
+}
