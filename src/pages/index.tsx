@@ -10,9 +10,8 @@ export default function Home() {
 	});
 	useAutoHeight();
 
-	const brandLogoUrl =
-		process.env.NEXT_PUBLIC_CUSTOMERIO_LOGO_URL ||
-		'https://customer.io/favicon.ico';
+	const brandIconUrl = process.env.NEXT_PUBLIC_CUSTOMERIO_LOGO_URL || 'https://customer.io/favicon.ico';
+	const brandWordmarkUrl = process.env.NEXT_PUBLIC_CUSTOMERIO_WORDMARK_URL || '';
 
 	const bridgeErrorMessage =
 		typeof appBridgeError === 'string'
@@ -52,8 +51,18 @@ export default function Home() {
 					<div className="app__content">
 						<header className="app__header">
 							<div className="app__brand" aria-label="Customer.io">
-								<img src={brandLogoUrl} alt="Customer.io" width={28} height={28} />
-								<h1 className="sr-only">Customer.io Placeholder Picker</h1>
+								{brandWordmarkUrl ? (
+									<img
+										className="app__brand-wordmark"
+										src={brandWordmarkUrl}
+										alt="customer.io"
+									/>
+								) : (
+									<>
+										<img className="app__brand-icon" src={brandIconUrl} alt="" aria-hidden="true" />
+										<h1 className="app__brand-text">customer.io</h1>
+									</>
+								)}
 							</div>
 							<p>
 								Click a placeholder to copy it, then paste it into a field

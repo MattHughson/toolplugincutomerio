@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { APP_ORIGIN, TOOL_ID } from '@/hooks/shared';
+import { APP_ORIGIN, getRuntimeToolId } from '@/hooks/shared';
 
 type Story = {
 	name: string;
@@ -25,10 +25,12 @@ export function useToolContext() {
 	};
 
 	useEffect(() => {
+		const toolId = getRuntimeToolId();
+
 		window.parent.postMessage(
 			{
 				action: 'tool-changed',
-				tool: TOOL_ID,
+				tool: toolId,
 				event: 'getContext',
 			},
 			APP_ORIGIN,

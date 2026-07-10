@@ -46,32 +46,31 @@ body {
 .app__brand {
 	display: inline-flex;
 	align-items: center;
-	justify-content: center;
-	width: 40px;
-	height: 40px;
-	border: 1px solid var(--sb-border);
-	border-radius: 999px;
+	gap: 10px;
 	margin-bottom: 10px;
-	background: #fff;
 }
 
-.app__brand img {
+.app__brand-wordmark {
 	display: block;
-	width: 28px;
-	height: 28px;
+	height: 24px;
+	width: auto;
+	max-width: 190px;
 	object-fit: contain;
 }
 
-.sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border: 0;
+.app__brand-icon {
+	display: block;
+	width: 24px;
+	height: 24px;
+	object-fit: contain;
+}
+
+.app__brand-text {
+	margin: 0;
+	font-size: 24px;
+	line-height: 1;
+	font-weight: 650;
+	letter-spacing: -0.03em;
 }
 
 .app__header p {

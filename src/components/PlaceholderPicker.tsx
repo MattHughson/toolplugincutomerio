@@ -88,18 +88,19 @@ export default function PlaceholderPicker() {
 	}, [query]);
 
 	const handleCopy = async (item: Placeholder) => {
-		const success = await copyToClipboard(item.tag);
+		const copyValue = `{{${item.tag}}}`;
+		const success = await copyToClipboard(copyValue);
 		if (success) {
 			setFailedTag(null);
 			setCopiedTag(item.tag);
-			setToast(`Copied ${item.tag}`);
+			setToast(`Copied ${copyValue}`);
 			setTimeout(() => {
 				setCopiedTag((current) => (current === item.tag ? null : current));
 			}, 1500);
 		} else {
 			setCopiedTag(null);
 			setFailedTag(item.tag);
-			setToast(`Could not copy ${item.tag}`);
+			setToast(`Could not copy ${copyValue}`);
 			setTimeout(() => {
 				setFailedTag((current) => (current === item.tag ? null : current));
 			}, 1500);

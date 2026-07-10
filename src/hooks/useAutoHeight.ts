@@ -1,13 +1,15 @@
 import { useEffect } from 'react';
-import { APP_ORIGIN, TOOL_ID } from '@/hooks/shared';
+import { APP_ORIGIN, getRuntimeToolId } from '@/hooks/shared';
 
 export function useAutoHeight() {
 	useEffect(() => {
+		const toolId = getRuntimeToolId();
+
 		const postHeight = () => {
 			window.parent.postMessage(
 				{
 					action: 'tool-changed',
-					tool: TOOL_ID,
+					tool: toolId,
 					event: 'heightChange',
 					height: Math.max(
 						document.body.scrollHeight,
@@ -27,6 +29,10 @@ export function useAutoHeight() {
 		});
 
 		postHeight();
+		const initialPings = window.setInterval(postHeight, 250);
+		const stopInitialPings = window.setTimeout(() => {
+			window.clearInterval(initialPings);
+		}, 4000);
 		window.addEventListener('resize', postHeight);
 
 		if (document.fonts?.ready) {
@@ -42,6 +48,8 @@ export function useAutoHeight() {
 		resizeObserver.observe(document.body);
 
 		return () => {
+			window.clearInterval(initialPings);
+			window.clearTimeout(stopInitialPings);
 			observer.disconnect();
 			resizeObserver.disconnect();
 			window.removeEventListener('resize', postHeight);
