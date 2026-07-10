@@ -13,7 +13,7 @@ export default function Home() {
 	const brandIconUrl = process.env.NEXT_PUBLIC_CUSTOMERIO_LOGO_URL || 'https://customer.io/favicon.ico';
 	const brandWordmarkUrl =
 		process.env.NEXT_PUBLIC_CUSTOMERIO_WORDMARK_URL ||
-		'https://cdn.sanity.io/images/onirtmj2/production/16019fbc08ecc85c8c1fc66d66eeb1a16f3cd3ca-300x72.svg';
+		'/customerio-logo.png';
 
 	const bridgeErrorMessage =
 		typeof appBridgeError === 'string'
