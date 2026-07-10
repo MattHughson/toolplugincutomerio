@@ -4,11 +4,20 @@ import PlaceholderPicker from '@/components/PlaceholderPicker';
 
 export default function Home() {
 	const toolContext = useToolContext();
-	const { completed, appBridgeAuth } = useAppBridge({
+	const { completed, appBridgeAuth, appBridgeError } = useAppBridge({
 		type: 'tool-plugin',
 		oauth: false,
 	});
 	useAutoHeight();
+
+	const bridgeErrorMessage =
+		typeof appBridgeError === 'string'
+			? appBridgeError
+			: appBridgeError instanceof Error
+				? appBridgeError.message
+				: appBridgeError && typeof appBridgeError === 'object' && 'message' in appBridgeError
+					? String((appBridgeError as { message?: unknown }).message ?? '')
+					: '';
 
 	return (
 		<>
@@ -25,10 +34,15 @@ export default function Home() {
 					<p className="app__status">Connecting to Storyblok…</p>
 				)}
 				{appBridgeAuth === 'error' && (
-					<p className="app__status app__status--error">
-						Couldn&apos;t verify this tool inside Storyblok. Open it from within
-						a story&apos;s tool tab.
-					</p>
+					<div className="app__status app__status--error">
+						<p>
+							Couldn&apos;t verify this tool inside Storyblok. Open it from within
+							a story&apos;s tool tab.
+						</p>
+						{process.env.NODE_ENV !== 'production' && bridgeErrorMessage && (
+							<p>Reason: {bridgeErrorMessage}</p>
+						)}
+					</div>
 				)}
 				{completed && (
 					<div className="app__content">

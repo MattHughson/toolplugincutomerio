@@ -251,7 +251,11 @@ export const useAppBridge = ({
 }) => {
 	const { init: initOAuth, status: oauthStatus } = useOAuth({ type });
 
-	const { init: initAppBridgeAuth, status: appBridgeAuthStatus } =
+	const {
+		init: initAppBridgeAuth,
+		status: appBridgeAuthStatus,
+		error: appBridgeAuthError,
+	} =
 		useAppBridgeAuth({
 			type,
 			authenticated: async () => {
@@ -272,6 +276,7 @@ export const useAppBridge = ({
 	return {
 		completed,
 		appBridgeAuth: appBridgeAuthStatus,
+		appBridgeError: appBridgeAuthError,
 		oauth: oauthStatus,
 		getSlug,
 		getParentHost,
