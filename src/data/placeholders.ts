@@ -16,35 +16,11 @@ export type PlaceholderGroup = {
 
 export const placeholderGroups: PlaceholderGroup[] = [
 	{
-		category: 'Personal',
+		category: 'Customer.io',
 		items: [
-			{ label: 'First name', tag: '{{firstname}}' },
-			{ label: 'Last name', tag: '{{lastname}}' },
-			{ label: 'Full name', tag: '{{fullname}}' },
-			{ label: 'Email address', tag: '{{email}}' },
-			{ label: 'Phone number', tag: '{{phone}}' },
-		],
-	},
-	{
-		category: 'Company',
-		items: [
-			{ label: 'Company name', tag: '{{company_name}}' },
-			{ label: 'Job title', tag: '{{job_title}}' },
-		],
-	},
-	{
-		category: 'Account',
-		items: [
-			{ label: 'Customer ID', tag: '{{customer_id}}' },
-			{ label: 'Plan name', tag: '{{plan_name}}' },
-			{ label: 'Signup date', tag: '{{signup_date}}' },
-		],
-	},
-	{
-		category: 'Links',
-		items: [
-			{ label: 'Unsubscribe link', tag: '{{unsubscribe_link}}' },
-			{ label: 'Account link', tag: '{{account_link}}' },
+			{ label: 'First name', tag: 'first_name' },
+			{ label: 'Last name', tag: 'last_name' },
+			{ label: 'Company', tag: 'company' },
 		],
 	},
 ];

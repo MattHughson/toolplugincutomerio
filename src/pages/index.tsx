@@ -10,6 +10,10 @@ export default function Home() {
 	});
 	useAutoHeight();
 
+	const brandLogoUrl =
+		process.env.NEXT_PUBLIC_CUSTOMERIO_LOGO_URL ||
+		'https://customer.io/favicon.ico';
+
 	const bridgeErrorMessage =
 		typeof appBridgeError === 'string'
 			? appBridgeError
@@ -47,7 +51,10 @@ export default function Home() {
 				{completed && (
 					<div className="app__content">
 						<header className="app__header">
-							<h1>Placeholder Picker</h1>
+							<div className="app__brand" aria-label="Customer.io">
+								<img src={brandLogoUrl} alt="Customer.io" width={28} height={28} />
+								<h1 className="sr-only">Customer.io Placeholder Picker</h1>
+							</div>
 							<p>
 								Click a placeholder to copy it, then paste it into a field
 								{toolContext?.story?.name ? ` on “${toolContext.story.name}”` : ''}.

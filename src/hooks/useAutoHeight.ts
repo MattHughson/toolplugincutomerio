@@ -3,17 +3,35 @@ import { APP_ORIGIN, TOOL_ID } from '@/hooks/shared';
 
 export function useAutoHeight() {
 	useEffect(() => {
-		const observer = new MutationObserver(() => {
+		const postHeight = () => {
 			window.parent.postMessage(
 				{
 					action: 'tool-changed',
 					tool: TOOL_ID,
 					event: 'heightChange',
-					height: document.body.scrollHeight,
+					height: Math.max(
+						document.body.scrollHeight,
+						document.documentElement.scrollHeight,
+					),
 				},
 				APP_ORIGIN,
 			);
+		};
+
+		const observer = new MutationObserver(() => {
+			postHeight();
 		});
+
+		const resizeObserver = new ResizeObserver(() => {
+			postHeight();
+		});
+
+		postHeight();
+		window.addEventListener('resize', postHeight);
+
+		if (document.fonts?.ready) {
+			document.fonts.ready.then(postHeight).catch(() => {});
+		}
 
 		observer.observe(document.body, {
 			attributes: true,
@@ -21,8 +39,12 @@ export function useAutoHeight() {
 			subtree: true,
 		});
 
+		resizeObserver.observe(document.body);
+
 		return () => {
 			observer.disconnect();
+			resizeObserver.disconnect();
+			window.removeEventListener('resize', postHeight);
 		};
 	}, []);
 }
